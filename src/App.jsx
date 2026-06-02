@@ -18,11 +18,15 @@ function Layout() {
       <Header />
 
       <div className="content-layout">
-        {location.pathname === "/" && <Sidebar />}
+        {location.pathname === "/" && (
+          <aside className="sidebar-wrapper">
+            <Sidebar />
+          </aside>
+        )}
 
         <main className="main-content">
           <AnimatePresence mode="wait">
-            <Routes>
+            <Routes location={location} key={location.pathname}>
               <Route path="/" element={<Home />} />
               <Route path="/car/:id" element={<CarDetails />} />
               <Route path="/cart" element={<Cart />} />
